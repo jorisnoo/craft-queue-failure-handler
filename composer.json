@@ -1,14 +1,29 @@
 {
     "name": "jorisnoo/craft-queue-failure-handler",
     "description": "Release matching queue jobs after they fail, instead of leaving them in the failed-jobs list. Pairs with webhubworks/craft-flare for reporting.",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "queue",
+        "flare",
+        "errors"
+    ],
+    "homepage": "https://github.com/jorisnoo/craft-queue-failure-handler",
+    "type": "library",
     "license": "MIT",
-    "keywords": ["craft", "cms", "craftcms", "queue", "flare", "errors"],
     "authors": [
         {
             "name": "Joris Noordermeer",
-            "email": "contact@noordermeer.ch"
+            "email": "contact@noordermeer.ch",
+            "homepage": "https://github.com/jorisnoo",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "source": "https://github.com/jorisnoo/craft-queue-failure-handler",
+        "issues": "https://github.com/jorisnoo/craft-queue-failure-handler/issues"
+    },
     "require": {
         "php": "^8.2",
         "craftcms/cms": "^5.0"
@@ -18,12 +33,13 @@
             "Noo\\CraftQueueFailureHandler\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
             "yiisoft/yii2-composer": true,
             "craftcms/plugin-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
