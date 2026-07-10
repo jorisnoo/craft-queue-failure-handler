@@ -42,7 +42,7 @@ class Module extends BaseModule
         foreach ($this->rules as $rule) {
             if ($this->matches($rule, $event)) {
                 $event->retry = false;
-                Craft::$app->getQueue()->release($event->id);
+                $event->sender->release($event->id);
                 return;
             }
         }
