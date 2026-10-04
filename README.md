@@ -65,3 +65,7 @@ It does **not** report errors itself. If `webhubworks/craft-flare` is installed,
 ## License
 
 MIT — see [LICENSE.md](LICENSE.md).
+
+## Maintainer releases
+
+See [RELEASING.md](RELEASING.md) for versioning, changelog entries and the release command.

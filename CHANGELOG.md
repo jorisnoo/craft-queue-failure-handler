@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## [0.1.1](https://github.com/jorisnoo/craft-queue-failure-handler/releases/tag/v0.1.1) (2026-07-10)
+## [0.1.1](https://github.com/jorisnoo/craft-queue-failure-handler/releases/tag/0.1.1) (2026-07-10)
 
 ### Bug Fixes
 
@@ -12,7 +12,7 @@
 
 - tidy composer.json metadata and add justfile ([1a4ffb9](https://github.com/jorisnoo/craft-queue-failure-handler/commit/1a4ffb95dab179a8bc83294bf22f14168742887a))
 - **deps:** bump actions/checkout from 6 to 7 ([58792a7](https://github.com/jorisnoo/craft-queue-failure-handler/commit/58792a7e8c37cea2bd53d5b6a00eacac720534b8))
-## [0.1.0](https://github.com/jorisnoo/craft-queue-failure-handler/releases/tag/v0.1.0) (2026-05-12)
+## [0.1.0](https://github.com/jorisnoo/craft-queue-failure-handler/releases/tag/0.1.0) (2026-05-12)
 
 ### Chores
 
