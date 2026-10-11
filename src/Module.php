@@ -13,11 +13,6 @@ class Module extends BaseModule
 {
     private array $rules = [];
 
-    public static function getInstance(): static
-    {
-        return Craft::$app->getModule('queue-failure-handler');
-    }
-
     public function init(): void
     {
         Craft::setAlias('@Noo/CraftQueueFailureHandler', __DIR__);
@@ -74,7 +69,7 @@ class Module extends BaseModule
             $message = $event->error?->getMessage() ?? '';
             $pattern = $rule['message'];
             $matched = str_starts_with($pattern, '/')
-                ? (bool) preg_match($pattern, $message)
+                ? $this->matchesRegex($pattern, $message)
                 : str_contains($message, $pattern);
 
             if (! $matched) {
@@ -83,5 +78,18 @@ class Module extends BaseModule
         }
 
         return true;
+    }
+
+    private function matchesRegex(string $pattern, string $message): bool
+    {
+        $result = @preg_match($pattern, $message);
+
+        if ($result === false) {
+            $reason = error_get_last()['message'] ?? preg_last_error_msg();
+            Craft::error("Invalid queue failure rule pattern {$pattern}: {$reason}", __METHOD__);
+            return false;
+        }
+
+        return $result === 1;
     }
 }
