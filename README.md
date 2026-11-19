@@ -50,15 +50,18 @@ return [
 Each rule is either:
 
 - A callable `fn(\yii\queue\ExecEvent $event): bool` — full control, do whatever you want with the event.
-- An array with optional `jobClass` and `message` keys. Both must match if both are present.
-  - `jobClass` — fully-qualified class name; matched with `instanceof`.
-  - `message` — matched against `$event->error->getMessage()`. Substring by default, regex if it starts with `/`.
+- An array with a `jobClass`, a message condition, or both. If both are present, **both** must match.
+  - `jobClass` — fully qualified class or interface name, matched with `instanceof`. Used alone this releases **every** failure of that class, including timeouts or worker crashes. Add a message condition to keep transient failures retryable.
+  - `message` — a nonempty substring of the exception message, or a regular expression if it starts with `/`.
+  - `messageContains` — a nonempty literal substring, including paths such as `/3.0/lists/`. Use this instead of `message` when a leading slash is literal.
+
+Malformed rules (including unknown keys, empty conditions, and invalid regexes) are logged and skipped. A throwing callable does not prevent later rules from matching.
 
 When a rule matches, the queue row is deleted and `$event->retry` is set to `false`. Errors that don't match any rule keep Craft's default behaviour (retry until attempts are exhausted, then sit in the failed list).
 
 ## How It Works
 
-The module listens on `craft\queue\Queue::EVENT_AFTER_ERROR`. When a rule matches, it calls `Craft::$app->getQueue()->release($event->id)` to drop the job from the queue table.
+The module listens on `craft\queue\Queue::EVENT_AFTER_ERROR`. It calls `$event->sender->release($event->id)` on the queue that raised the error, including custom Craft queue components.
 
 It does **not** report errors itself. If `webhubworks/craft-flare` is installed, its own listener on the same event handles reporting — the report still lands in Flare even though the queue row is gone.
 

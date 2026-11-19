@@ -11,8 +11,10 @@ Release from `main` using an explicit version without a `v` prefix. `CHANGELOG.m
 Configured release checks:
 
 ```sh
-composer validate --no-check-publish
+composer check
 ```
+
+This runs strict manifest validation, the Composer advisory audit, PHPStan and the Pest queue-event regressions. The `Package checks` status requires successful runs on both PHP 8.2 and 8.5 for pushes and pull requests.
 
 Install the project’s normal dependencies first. The helper runs these checks when publishing; dry-run prints them without executing them. Run any additional checks needed for the changed behavior before committing.
 

@@ -1,17 +1,17 @@
-# Do not export those files in the Composer archive (lighter dependency)
-.gitattributes export-ignore
-.github/ export-ignore
-.gitignore export-ignore
-CHANGELOG.md export-ignore
-README.md export-ignore
-SECURITY.md export-ignore
-composer.lock export-ignore
-ecs.php export-ignore
-package-lock.json export-ignore
-package.json export-ignore
-phpstan.neon export-ignore
-stubs/ export-ignore
-tests/ export-ignore
+# Ship consumer documentation and runtime files, not maintainer tooling.
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.release.json export-ignore
+/AGENTS.md export-ignore
+/CLAUDE.md export-ignore
+/RELEASING.md export-ignore
+/justfile export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml.dist export-ignore
+/scripts export-ignore
+/tests export-ignore
 
 # Auto-detect text files and perform LF normalization
 * text=auto

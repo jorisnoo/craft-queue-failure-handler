@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## [0.2.0] - 2026-11-19
+
+### Changed
+
+- Malformed rules are now logged and skipped instead of interrupting the queue handler or accidentally releasing jobs. Replace empty conditions with explicit matches and remove unrecognized keys from rule arrays. Existing valid `message` regexes continue to work; use `messageContains` to match a literal path starting with `/`.
+- Module lookup now follows Yii's instance registry, including custom IDs, and returns `null` when the module has not been loaded.
 
 ## [0.1.1](https://github.com/jorisnoo/craft-queue-failure-handler/releases/tag/0.1.1) (2026-07-10)
 

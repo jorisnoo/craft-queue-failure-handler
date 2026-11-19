@@ -5,8 +5,7 @@
   "checks": [
     [
       "composer",
-      "validate",
-      "--no-check-publish"
+      "check"
     ]
   ]
 }

@@ -9,7 +9,9 @@
  *   - a callable: fn(\yii\queue\ExecEvent $event): bool
  *   - an array with optional 'jobClass' and 'message' keys; both must match if both are present.
  *     'message' is matched as a substring against $event->error->getMessage(),
- *     unless it starts with '/' in which case it's treated as a regex.
+ *     unless it starts with '/' in which case it's treated as a regex. Use 'messageContains'
+ *     instead of 'message' to match a literal starting with '/'. Empty values are invalid.
+ *     A 'jobClass'-only rule releases all failures of that class, including timeouts.
  *
  * On match, the queue row is released (deleted) and retry is suppressed.
  * Reporting to Flare is left to webhubworks/craft-flare's own listener on the same event.
